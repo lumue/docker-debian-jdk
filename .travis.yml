@@ -5,3 +5,4 @@ services:
 
 script: ./build.sh
 
+deploy: ./deploy.sh
