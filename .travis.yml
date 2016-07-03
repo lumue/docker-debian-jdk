@@ -5,6 +5,11 @@ language: ruby
 services:
   - docker
 
-script: ./build.sh
+before_install:
+  - docker build -t lumue/debjdk .
 
-deploy: ./deploy.sh
+after_success:
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker push lumue/debjdk
+
+
