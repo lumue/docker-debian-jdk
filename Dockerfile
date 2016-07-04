@@ -2,10 +2,10 @@ FROM debian:experimental
 MAINTAINER Lutz Mueller <mueller.lutz@gmail.com>
 
 ENV JAVA_VERSION_MAJOR 8
-ENV JAVA_VERSION_MINOR 77
-ENV JAVA_VERSION_BUILD 03
+ENV JAVA_VERSION_MINOR 92
+ENV JAVA_VERSION_BUILD 14
 ENV JAVA_PACKAGE       server-jre
-ENV JAVA_SHA256_SUM    81ecc8bc0edd800271692cd50326996f970a6901eb0196e3962802927261edeb
+ENV JAVA_SHA256_SUM    79a3f25e9b466cb9e969d1772ea38550de320c88e9119bf8aa11ce8547c39987
 
 RUN apt-get -y update && \
     apt-get -y install curl && \
@@ -40,7 +40,8 @@ RUN apt-get -y update && \
     apt-get -y --allow-remove-essential purge $(aptitude search '~i!~M!~prequired!~pimportant!~R~prequired!~R~R~prequired!~R~pimportant!~R~R~pimportant!busybox!grub!initramfs-tools' | awk '{print $2}') && \
     apt-get -y --allow-remove-essential purge aptitude && \
     apt-get -y --allow-remove-essential autoremove && \
-    apt-get -y clean
+    apt-get -y clean && \
+    rm -rf /var/cache/*
 
 
 
